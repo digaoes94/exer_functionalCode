@@ -39,8 +39,12 @@ public class Main {
 										.filter(emp -> emp.getSalary() > floor)
 										.map(emp -> emp.getEmail()).sorted()
 										.collect(Collectors.toList());
-			
 			aboveEarners.forEach(System.out::println);
+			
+			Double sum = employeeList.stream().filter(emp -> emp.getName().charAt(0) == 'M')
+									 .map(emp -> emp.getSalary())
+									 .reduce(0.0, (sal1, sal2) -> sal1 + sal2);
+			System.out.print("Sum of salaries whose employee's name starts with 'M': " + sum);
 		}
 		catch (IOException error) {
 			System.out.println("Error: " + error.getMessage());
